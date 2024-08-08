@@ -1,0 +1,65 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import AboutMe from "@/components/AboutMe.astro";
+import Briefcase from "@/components/icons/Briefcase.astro";
+import CodeIcon from "@/components/icons/Code.astro";
+import Experience from "@/components/Experience.astro";
+import ProfileCheck from "@/components/icons/ProfileCheck.astro";
+import Projects from "@/components/Projects.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import Hero from "@/components/Hero.astro";
+import Certificados from "@/components/Certificados.astro";
+import Certificate from "@/components/icons/Certificate.astro";
+---
+
+<Layout
+  title="Porfolio de Gustavo Mendez - Desarrollador y Programador Web con 2 años de experiencia"
+  description="Como desarrollador frontend, diseño interfaces de usuario atractivas y eficientes. Mi enfoque se centra en la creatividad, la resolución de problemas y la optimización de la experiencia del usuario."
+>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-36">
+      <Hero />
+    </SectionContainer>
+
+    <div class="space-y-24">
+      <SectionContainer id="experiencia">
+        <h2
+          class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
+        >
+          <Briefcase class="size-8" />
+          Work Experience
+        </h2>
+        <Experience />
+      </SectionContainer>
+
+      <SectionContainer id="proyectos">
+        <h2
+          class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
+        >
+          <CodeIcon class="size-7" />
+          Proyects
+        </h2>
+        <Projects />
+      </SectionContainer>
+
+      <SectionContainer id="sobre-mi">
+        <h2
+          class="flex items-center mb-6 text-3xl font-semibold gap-x-8 text-black/80 dark:text-white"
+        >
+          <ProfileCheck class="size-8" />
+          About Me
+        </h2>
+        <AboutMe />
+      </SectionContainer>
+      <SectionContainer id="Certificados">
+        <h2
+          class="flex items-center mb-6 text-3xl font-semibold gap-x-8 text-black/80 dark:text-white"
+        >
+          <Certificate class="size-8" />
+          Certificate
+        </h2>
+        <Certificados />
+      </SectionContainer>
+    </div>
+  </main>
+</Layout>
