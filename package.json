@@ -1,7 +1,16 @@
 {
-  "name": "porfolio-dev",
+  "name": "gustavo-mendez-portfolio",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Frontend Developer Portfolio - Gustavo D. Mendez specializing in React, JavaScript, and modern web technologies",
+  "keywords": ["frontend", "developer", "portfolio", "react", "javascript", "typescript", "web development"],
+  "author": "Gustavo D. Mendez",
+  "license": "MIT",
+  "homepage": "https://porfolio.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mendezgd/portfolio"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

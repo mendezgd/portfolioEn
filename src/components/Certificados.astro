@@ -61,29 +61,32 @@ const CERTIFICATES = [
       TAGS.Git,
     ],
     description: "Stack",
+    issuer: "Coderhouse",
+    dateIssued: "2023"
   },
 ];
 ---
 
 <div class="flex flex-col gap-y-16">
   {
-    CERTIFICATES.map(({ image, title, tags, link, description }) => (
-      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+    CERTIFICATES.map(({ image, title, tags, link, description, issuer, dateIssued }) => (
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0" itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
         <div class="w-full md:w-1/2">
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
             <img
-              alt="Certificate"
+              alt={`${title} certificate from ${issuer}`}
               class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
               src={image}
+              itemprop="image"
             />
           </div>
         </div>
 
         <div class="w-full md:w-1/2 md:max-w-lg">
-          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100" itemprop="name">
             {title}
           </h3>
-          <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
+          <div class="mt-2 text-gray-700 dark:text-gray-400" itemprop="description">{description}</div>
           <div class="flex flex-wrap mt-2">
             <ul class="flex flex-row flex-wrap mb-2 gap-x-2">
               {tags.map((tag) => (
@@ -100,9 +103,9 @@ const CERTIFICATES = [
 
             <footer class="flex items-end justify-start mt-4 gap-x-4">
               {link && (
-                <SocialPill href={link}>
+                <SocialPill href={link} aria-label={`View ${title} certificate`}>
                   <Link class="size-4" />
-                  Link
+                  View Certificate
                 </SocialPill>
               )}
             </footer>
@@ -112,3 +115,25 @@ const CERTIFICATES = [
     ))
   }
 </div>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Gustavo D. Mendez",
+  "hasCredential": CERTIFICATES.map(cert => ({
+    "@type": "EducationalOccupationalCredential",
+    "name": cert.title,
+    "description": cert.description,
+    "credentialCategory": "Professional Certification",
+    "recognizedBy": {
+      "@type": "Organization",
+      "name": cert.issuer
+    },
+    "validIn": {
+      "@type": "Country",
+      "name": "Argentina"
+    },
+    "dateIssued": cert.dateIssued,
+    "url": cert.link
+  }))
+})} />

@@ -38,7 +38,7 @@ const EXPERIENCIE = [
 ];
 ---
 
-<ol class="relative mt-16">
+<ol class="relative mt-16" itemscope itemtype="https://schema.org/Person">
   {
     EXPERIENCIE.map((experiencie) => (
       <li class="">
@@ -47,3 +47,25 @@ const EXPERIENCIE = [
     ))
   }
 </ol>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Gustavo D. Mendez",
+  "jobTitle": "Frontend Developer",
+  "worksFor": EXPERIENCIE.map(exp => ({
+    "@type": "Organization",
+    "name": exp.company,
+    "employee": {
+      "@type": "Person",
+      "name": "Gustavo D. Mendez",
+      "jobTitle": exp.title
+    }
+  })),
+  "hasOccupation": EXPERIENCIE.map(exp => ({
+    "@type": "Occupation",
+    "name": exp.title,
+    "employerName": exp.company,
+    "description": exp.description
+  }))
+})} />

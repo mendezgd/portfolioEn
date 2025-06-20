@@ -8,8 +8,8 @@ const navItems = [
     url: "/#experiencia",
   },
   {
-    title: "Proyects",
-    label: "proyects",
+    title: "Projects",
+    label: "projects",
     url: "/#proyectos",
   },
   {
@@ -27,9 +27,12 @@ const navItems = [
 
 <header
   class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
+  role="banner"
 >
   <nav
     class="flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center"
+    role="navigation"
+    aria-label="Main navigation"
   >
     {
       navItems.map((link) => (
