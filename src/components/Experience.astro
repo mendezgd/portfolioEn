@@ -2,6 +2,12 @@
 import ExperienceItem from "./ExperienceItem.astro";
 const EXPERIENCIE = [
   {
+    date: " Jun 2025 - At present.",
+    title: "Frontend Developer",
+    company: "MM - Monica & Marcelo Building Administrators",
+    description: "Creation and maintenance of the current website.",
+  },
+  {
     date: " Feb 2025 - At present.",
     title: "Frontend Developer",
     company: "Marlogistic",
@@ -48,24 +54,27 @@ const EXPERIENCIE = [
   }
 </ol>
 
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Gustavo D. Mendez",
-  "jobTitle": "Frontend Developer",
-  "worksFor": EXPERIENCIE.map(exp => ({
-    "@type": "Organization",
-    "name": exp.company,
-    "employee": {
-      "@type": "Person",
-      "name": "Gustavo D. Mendez",
-      "jobTitle": exp.title
-    }
-  })),
-  "hasOccupation": EXPERIENCIE.map(exp => ({
-    "@type": "Occupation",
-    "name": exp.title,
-    "employerName": exp.company,
-    "description": exp.description
-  }))
-})} />
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Gustavo D. Mendez",
+    jobTitle: "Frontend Developer",
+    worksFor: EXPERIENCIE.map((exp) => ({
+      "@type": "Organization",
+      name: exp.company,
+      employee: {
+        "@type": "Person",
+        name: "Gustavo D. Mendez",
+        jobTitle: exp.title,
+      },
+    })),
+    hasOccupation: EXPERIENCIE.map((exp) => ({
+      "@type": "Occupation",
+      name: exp.title,
+      employerName: exp.company,
+      description: exp.description,
+    })),
+  })}
+/>
