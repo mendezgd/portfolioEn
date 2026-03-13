@@ -1,106 +1,251 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro";
-
 const navItems = [
-  {
-    title: "Experience",
-    label: "experience",
-    url: "/#experiencia",
-  },
-  {
-    title: "Projects",
-    label: "projects",
-    url: "/#proyectos",
-  },
-  {
-    title: "About me",
-    label: "About me",
-    url: "/#sobre-mi",
-  },
-  {
-    title: "Contact",
-    label: "contact",
-    url: "mailto:mendezgd88@gmail.com",
-  },
+  { title: "Experience", url: "/#experience" },
+  { title: "Projects", url: "/#projects" },
+  { title: "About", url: "/#about" },
+  { title: "Contact", url: "mailto:mendezgd88@gmail.com" },
 ];
 ---
 
-<header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
-  role="banner"
->
-  <nav
-    class="flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center"
-    role="navigation"
-    aria-label="Main navigation"
-  >
-    {
-      navItems.map((link) => (
-        <a
-          class="relative block px-2 py-2 transition hover:text-blue-400 dark:hover:text-blue-400"
-          aria-label={link.label}
-          href={link.url}
+<header id="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="Home">GDM<span>.</span></a>
+
+    <div class="header-right">
+      <nav aria-label="Main navigation">
+        {
+          navItems.map((link) => (
+            <a href={link.url} class="nav-link">
+              {link.title}
+            </a>
+          ))
+        }
+      </nav>
+
+      <button id="theme-toggle" aria-label="Toggle dark mode">
+        <!-- Moon: visible in light mode -->
+        <svg
+          id="icon-moon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         >
-          {link.title}
-        </a>
-      ))
-    }
-    <ThemeToggle />
-  </nav>
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+        <!-- Sun: visible in dark mode -->
+        <svg
+          id="icon-sun"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  </div>
 </header>
 
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const sections = document.querySelectorAll("section");
-    const navItems = document.querySelectorAll("header nav a");
-
-    const callback = (entries: any[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navItems.forEach((item) => {
-            if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-blue-400");
-            } else {
-              item.classList.remove("text-blue-400");
-            }
-          });
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(callback, {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.3,
-    });
-
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    // Cleanup function
-    document.onvisibilitychange = () => {
-      if (document.visibilityState === "hidden") {
-        observer.disconnect();
-      } else {
-        sections.forEach((section) => {
-          observer.observe(section);
-        });
-      }
-    };
-  });
-</script>
-
-<style>
-  nav {
-    animation: nav-shadown 1s linear both;
-    animation-timeline: scroll();
-    animation-range: 0 100px;
+<!-- All styles global so html.dark selectors work correctly in Astro -->
+<style is:global>
+  #site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    transition:
+      background 0.3s ease,
+      border-bottom 0.3s ease;
   }
 
-  @keyframes nav-shadown {
-    to {
-      @apply shadow-lg ring-1 backdrop-blur dark:bg-gray-800/90 bg-white/50 ring-white/10;
+  #site-header.scrolled {
+    background: rgba(245, 240, 232, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  html.dark #site-header.scrolled {
+    background: rgba(20, 20, 18, 0.94);
+  }
+
+  #site-header .header-inner {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #site-header .logo {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  #site-header .logo span {
+    color: var(--ink);
+  }
+  #site-header .logo:hover {
+    opacity: 0.5;
+  }
+
+  #site-header .header-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  #site-header nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  #site-header .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+  #site-header .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--ink);
+    transition: width 0.25s ease;
+  }
+  #site-header .nav-link:hover {
+    color: var(--ink);
+  }
+  #site-header .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* ── Theme toggle button ── */
+  #theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    color: var(--ink);
+    flex-shrink: 0;
+    transition:
+      background 0.2s,
+      border-color 0.2s;
+  }
+  #theme-toggle:hover {
+    background: var(--border);
+  }
+
+  /* Icon switching via JS — handled in script below */
+  #icon-sun {
+    display: none;
+  }
+  #icon-moon {
+    display: block;
+  }
+
+  html.dark #icon-sun {
+    display: block;
+  }
+  html.dark #icon-moon {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    #site-header {
+      padding: 0 1.25rem;
+    }
+    #site-header .header-right {
+      gap: 1.25rem;
+    }
+    #site-header nav {
+      gap: 1rem;
+    }
+    #site-header .nav-link {
+      font-size: 0.68rem;
     }
   }
 </style>
+
+<script is:inline>
+  // Runs immediately — no defer, no module
+  (function () {
+    var header = document.getElementById("site-header");
+    var btn = document.getElementById("theme-toggle");
+    var sunEl = document.getElementById("icon-sun");
+    var moonEl = document.getElementById("icon-moon");
+
+    // Sync icons with current theme on load
+    function syncIcons() {
+      var dark = document.documentElement.classList.contains("dark");
+      if (sunEl) sunEl.style.display = dark ? "block" : "none";
+      if (moonEl) moonEl.style.display = dark ? "none" : "block";
+    }
+
+    syncIcons();
+
+    // Toggle
+    if (btn) {
+      btn.addEventListener("click", function () {
+        var isDark = document.documentElement.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        syncIcons();
+      });
+    }
+
+    // Scroll glass effect
+    if (header) {
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (window.scrollY > 20) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+        },
+        { passive: true },
+      );
+    }
+  })();
+</script>

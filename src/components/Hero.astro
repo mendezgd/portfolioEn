@@ -1,57 +1,194 @@
 ---
-const personalImageAlt = "Gustavo D. Mendez - Frontend Developer from Buenos Aires, Argentina";
-import Badge from "@/components/Badge.astro";
-import LinkedInIcon from "@/components/icons/LinkedIn.astro";
-import MailIcon from "@/components/icons/Mail.astro";
-import SocialPill from "@/components/SocialPill.astro";
 ---
 
-<div class="max-w-xl" itemscope itemtype="https://schema.org/Person">
-  <div class="flex gap-4 mb-4">
-    <img
-      class="rounded-full shadow-lg size-16"
-      src="/perfil.webp"
-      alt={personalImageAlt}
-      itemprop="image"
-    />
-    <a
-      href="https://www.linkedin.com/in/gmendez1988/"
-      target="_blank"
-      rel="noopener"
-      class="flex items-center transition md:justify-center md:hover:scale-105"
-      aria-label="View Gustavo's LinkedIn profile"
-    >
-      <Badge>Available to work</Badge>
-    </a>
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-meta reveal">
+      <span class="meta-label">Frontend Developer</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-label">Buenos Aires, AR</span>
+      <span class="meta-sep">·</span>
+      <a
+        href="https://www.linkedin.com/in/gmendez1988/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="meta-available"
+        aria-label="Available to work - LinkedIn"
+      >
+        <span class="dot-pulse"></span>
+        Available
+      </a>
+    </div>
+
+    <h1 class="hero-name reveal reveal-delay-1">
+      <span class="name-first">Gustavo</span>
+      <span class="name-last">D. Mendez</span>
+    </h1>
+
+    <p class="hero-tagline reveal reveal-delay-2">
+      I build efficient,<br />
+      <em>memorable interfaces.</em>
+    </p>
+
+    <div class="hero-links reveal reveal-delay-3">
+      <a href="mailto:mendezgd88@gmail.com" class="hero-link">
+        mendezgd88@gmail.com
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/gmendez1988/" target="_blank" rel="noopener noreferrer" class="hero-link">
+        LinkedIn
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="https://github.com/mendezgd" target="_blank" rel="noopener noreferrer" class="hero-link">
+        GitHub
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
   </div>
-  <h1
-    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
-    itemprop="name"
-  >
-    Gustavo D. Mendez
-  </h1>
-  <p
-    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-blue-400 [&>strong]:text-blue-800 [&>strong]:font-semibold dark:text-gray-300"
-    itemprop="description"
-  >
-    <strong itemprop="jobTitle">Frontend Developer</strong>, In Buenos Aires, Argentina, I
-    specialize in designing and developing innovative and personalized web
-    pages.
-  </p>
-  <nav class="flex flex-wrap gap-4 mt-8" aria-label="Contact and social links">
-    <SocialPill href="mailto:mendezgd88@gmail.com" aria-label="Send email to Gustavo">
-      <MailIcon class="size-4" />
-      Contact
-    </SocialPill>
-    <SocialPill href="https://www.linkedin.com/in/gmendez1988/" aria-label="View Gustavo's LinkedIn profile">
-      <LinkedInIcon class="size-4" />
-      LinkedIn
-    </SocialPill>
-  </nav>
-  
-  <meta itemprop="url" content="https://porfolio.dev/" />
-  <meta itemprop="sameAs" content="https://www.linkedin.com/in/gmendez1988/" />
-  <meta itemprop="sameAs" content="https://github.com/mendezgd" />
-  <meta itemprop="addressLocality" content="Buenos Aires" />
-  <meta itemprop="addressCountry" content="AR" />
-</div>
+
+  <div class="hero-index reveal reveal-delay-4">
+    <span>01 / Experience</span>
+    <span>02 / Projects</span>
+    <span>03 / About</span>
+    <span>04 / Certificates</span>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-inner {
+    padding-top: 80px;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-ghost);
+  }
+
+  .meta-sep { opacity: 0.4; }
+
+  .meta-available {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #2A7A2A;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .meta-available:hover { opacity: 0.7; }
+
+  .dot-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2A7A2A;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .hero-name {
+    font-family: var(--font-mono);
+    font-weight: 300;
+    font-size: clamp(3rem, 9vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+
+  .name-first { display: block; }
+  .name-last  {
+    display: block;
+    color: var(--ink-ghost);
+    padding-left: 0.08em;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-mono);
+    font-weight: 300;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 3rem;
+    border-left: 2px solid var(--border);
+    padding-left: 1.25rem;
+  }
+
+  .hero-tagline em {
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+  }
+
+  .hero-link {
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-soft);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+  }
+
+  .hero-link:hover {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+
+  /* Floating index in bottom-right */
+  .hero-index {
+    position: absolute;
+    bottom: 3rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.3rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-ghost);
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 0 1.25rem; }
+    .hero-index { display: none; }
+    .name-last { padding-left: 0; }
+  }
+</style>

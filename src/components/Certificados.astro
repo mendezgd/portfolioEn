@@ -1,139 +1,149 @@
 ---
-import Html from "./icons/Html.astro";
-import Sass from "./icons/Sass.astro";
-import Link from "./icons/Link.astro";
-import React from "./icons/React.astro";
-import CSS from "./icons/CSS.astro";
-import Bootstrap from "./icons/Bootstrap.astro";
-import GitHub from "./icons/GitHub.astro";
-import Git from "./icons/Git.astro";
-import SocialPill from "./SocialPill.astro";
-
-const TAGS = {
-  REACT: {
-    name: "React",
-    class: "bg-[#003159] text-white",
-    icon: React,
-  },
-  CSS: {
-    name: "CSS",
-    class: "bg-[#003159] text-white",
-    icon: CSS,
-  },
-  Bootstrap: {
-    name: "Bootstrap",
-    class: "bg-[#003159] text-white",
-    icon: Bootstrap,
-  },
-  Html: {
-    name: "HTML",
-    class: "bg-[#003159] text-white",
-    icon: Html,
-  },
-  Sass: {
-    name: "Sass",
-    class: "bg-[#003159] text-white",
-    icon: Sass,
-  },
-  GitHub: {
-    name: "GitHub",
-    class: "bg-[#003159] text-white",
-    icon: GitHub,
-  },
-  Git: {
-    name: "Git",
-    class: "bg-[#003159] text-white",
-    icon: Git,
-  },
-};
 const CERTIFICATES = [
   {
     title: "Frontend Developer",
+    issuer: "Coderhouse",
+    date: "2023",
     link: "https://pub.coderhouse.com/legacy-certificates/64e549d6c5e0d30aab004261?lang=es",
     image: "/projects/front.webp",
-    tags: [
-      TAGS.CSS,
-      TAGS.Bootstrap,
-      TAGS.REACT,
-      TAGS.Html,
-      TAGS.Sass,
-      TAGS.GitHub,
-      TAGS.Git,
-    ],
-    description: "Stack",
-    issuer: "Coderhouse",
-    dateIssued: "2023"
+    stack: ["HTML", "CSS", "Bootstrap", "React", "Sass", "Git", "GitHub"],
   },
 ];
 ---
 
-<div class="flex flex-col gap-y-16">
-  {
-    CERTIFICATES.map(({ image, title, tags, link, description, issuer, dateIssued }) => (
-      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0" itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
-        <div class="w-full md:w-1/2">
-          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-            <img
-              alt={`${title} certificate from ${issuer}`}
-              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
-              src={image}
-              itemprop="image"
-            />
-          </div>
+<div class="certs-list">
+  {CERTIFICATES.map((cert) => (
+    <div class="cert-item reveal">
+      <div class="cert-img-col">
+        <div class="cert-img-wrap">
+          <img
+            src={cert.image}
+            alt={`${cert.title} certificate — ${cert.issuer}`}
+            class="cert-img"
+            loading="lazy"
+          />
         </div>
-
-        <div class="w-full md:w-1/2 md:max-w-lg">
-          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100" itemprop="name">
-            {title}
-          </h3>
-          <div class="mt-2 text-gray-700 dark:text-gray-400" itemprop="description">{description}</div>
-          <div class="flex flex-wrap mt-2">
-            <ul class="flex flex-row flex-wrap mb-2 gap-x-2">
-              {tags.map((tag) => (
-                <li>
-                  <span
-                    class={`flex gap-x-2 mt-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-                  >
-                    <tag.icon class="size-4" />
-                    {tag.name}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <footer class="flex items-end justify-start mt-4 gap-x-4">
-              {link && (
-                <SocialPill href={link} aria-label={`View ${title} certificate`}>
-                  <Link class="size-4" />
-                  View Certificate
-                </SocialPill>
-              )}
-            </footer>
-          </div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-meta">
+          <span class="cert-issuer">{cert.issuer}</span>
+          <span class="cert-date">{cert.date}</span>
         </div>
-      </article>
-    ))
-  }
+        <h3 class="cert-title">{cert.title}</h3>
+        <ul class="cert-stack">
+          {cert.stack.map(s => <li>{s}</li>)}
+        </ul>
+        <a
+          href={cert.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cert-link"
+        >
+          View certificate →
+        </a>
+      </div>
+    </div>
+  ))}
 </div>
 
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Gustavo D. Mendez",
-  "hasCredential": CERTIFICATES.map(cert => ({
-    "@type": "EducationalOccupationalCredential",
-    "name": cert.title,
-    "description": cert.description,
-    "credentialCategory": "Professional Certification",
-    "recognizedBy": {
-      "@type": "Organization",
-      "name": cert.issuer
-    },
-    "validIn": {
-      "@type": "Country",
-      "name": "Argentina"
-    },
-    "dateIssued": cert.dateIssued,
-    "url": cert.link
-  }))
-})} />
+<style>
+  .certs-list { display: flex; flex-direction: column; gap: 0; }
+
+  .cert-item {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .cert-item:first-child { border-top: 1px solid var(--border); }
+
+  .cert-img-wrap {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+
+  .cert-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: filter 0.4s;
+  }
+
+  .cert-item:hover .cert-img { filter: grayscale(0%); }
+
+  .cert-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .cert-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cert-issuer {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-ghost);
+    font-weight: 500;
+  }
+
+  .cert-date {
+    font-size: 0.7rem;
+    color: var(--ink-ghost);
+  }
+
+  .cert-title {
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .cert-stack {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .cert-stack li {
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-ghost);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+  }
+
+  .cert-link {
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+    transition: color 0.2s;
+    width: fit-content;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+  }
+
+  .cert-link:hover {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+
+  @media (max-width: 680px) {
+    .cert-item {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

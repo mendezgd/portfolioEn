@@ -1,87 +1,145 @@
 ---
-import ExperienceItem from "./ExperienceItem.astro";
-const EXPERIENCIE = [
+const EXPERIENCE = [
   {
-    date: " Jun 2025 - At present.",
+    date: "Jun 2025 — Present",
     title: "Frontend Developer",
     company: "MTG Project",
-    description:
-      "Creation and maintenance of the site, a personal project in collaboration with a group of friends who play MTG.",
+    description: "Creation and maintenance of the site, a personal project in collaboration with a group of friends who play MTG.",
+    link: "https://mtg-theta.vercel.app",
   },
   {
-    date: " Jun 2025 - At present.",
+    date: "Jun 2025 — Present",
     title: "Frontend Developer",
-    company: "MM - Monica & Marcelo Building Administrators",
+    company: "MM — Monica & Marcelo Building Administrators",
     description: "Creation and maintenance of the current website.",
+    link: "https://acunaconsorcios.com/",
   },
   {
-    date: " Feb 2025 - At present.",
+    date: "Feb 2025 — Present",
     title: "Frontend Developer",
     company: "Marlogistic",
     description: "Creation and maintenance of the current website.",
+    link: "https://www.marlogistic.com.ar/",
   },
   {
-    date: " Jul 2023 - At present.",
+    date: "Jul 2023 — Present",
     title: "Frontend Developer",
     company: "FyM Sanitarios",
-    description:
-      "Creation and maintenance of the current website and development of a new one focused on eCommerce using React (work in progress).",
+    description: "Creation and maintenance of the current website and development of a new one focused on eCommerce using React (work in progress).",
+    link: "https://fym-sanitarios.vercel.app/",
   },
   {
-    date: " Jul 2016 - At present.",
+    date: "Jul 2016 — Present",
     title: "Help Desk Specialist",
     company: "Ribeiro",
-    description:
-      "Help Desk Specialist, Active Directory admin, Mail admin, Credit Cards homologation.",
+    description: "Help Desk Specialist, Active Directory admin, Mail admin, Credit Cards homologation.",
   },
   {
-    date: "Sep 2014 - Jul 2016. ",
-    title: "IT Support at Atos for Siemens account LATAM",
-    company: "Atos",
-    description:
-      "Assistance over the phone or ticket performing remote troubleshooting through diagnostic techniques for Siemens employees. Ticket tool BMC Remedy, Service Now, Net pro2000, Active Directory.",
+    date: "Sep 2014 — Jul 2016",
+    title: "IT Support",
+    company: "Atos · Siemens LATAM",
+    description: "Remote troubleshooting for Siemens employees. Tools: BMC Remedy, ServiceNow, Net pro2000, Active Directory.",
   },
   {
-    date: "Jul 2010 - Dec 2013. ",
+    date: "Jul 2010 — Dec 2013",
     title: "IT Technician",
     company: "Microsoft",
-    description:
-      "HST IT Support Team Level 1 & 2. On site support, resolution of different hardware and software incidents, contact with suppliers (Lenovo, Xerox, HP), Hardware stock management.",
+    description: "HST IT Support Level 1 & 2. On-site support, hardware and software incidents, supplier contact (Lenovo, Xerox, HP), hardware stock management.",
   },
 ];
 ---
 
-<ol class="relative mt-16" itemscope itemtype="https://schema.org/Person">
-  {
-    EXPERIENCIE.map((experiencie) => (
-      <li class="">
-        <ExperienceItem {...experiencie} />
-      </li>
-    ))
-  }
-</ol>
+<div class="exp-list">
+  {EXPERIENCE.map((item, i) => (
+    <div class={`exp-item reveal reveal-delay-${Math.min(i % 3 + 1, 4)}`}>
+      <div class="exp-date">{item.date}</div>
+      <div class="exp-body">
+        <div class="exp-header">
+          <span class="exp-title">{item.title}</span>
+          <span class="exp-company">{item.company}</span>
+        </div>
+        <p class="exp-desc">{item.description}</p>
+        {item.link && (
+          <a href={item.link} target="_blank" rel="noopener noreferrer" class="exp-link">
+            Visit site →
+          </a>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
 
-<script
-  type="application/ld+json"
-  set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Gustavo D. Mendez",
-    jobTitle: "Frontend Developer",
-    worksFor: EXPERIENCIE.map((exp) => ({
-      "@type": "Organization",
-      name: exp.company,
-      employee: {
-        "@type": "Person",
-        name: "Gustavo D. Mendez",
-        jobTitle: exp.title,
-      },
-    })),
-    hasOccupation: EXPERIENCIE.map((exp) => ({
-      "@type": "Occupation",
-      name: exp.title,
-      employerName: exp.company,
-      description: exp.description,
-    })),
-  })}
-/>
+<style>
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0 2.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+
+  .exp-date {
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-ghost);
+    text-transform: uppercase;
+    padding-top: 0.2rem;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .exp-body { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .exp-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+  }
+
+  .exp-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .exp-company {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+
+  .exp-desc {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 56ch;
+  }
+
+  .exp-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-ghost);
+    transition: color 0.2s;
+    width: fit-content;
+  }
+
+  .exp-link:hover { color: var(--ink); }
+
+  @media (max-width: 680px) {
+    .exp-item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      padding: 1.5rem 0;
+    }
+  }
+</style>

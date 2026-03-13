@@ -1,198 +1,225 @@
 ---
-import GitHub from "./icons/GitHub.astro";
-import Link from "./icons/Link.astro";
-import React from "./icons/React.astro";
-import CSS from "./icons/CSS.astro";
-import Bootstrap from "./icons/Bootstrap.astro";
-import Tailwind from "./icons/Tailwind.astro";
-import NextJS from "./icons/NextJS.astro";
-import SocialPill from "./SocialPill.astro";
-
-const TAGS = {
-  REACT: {
-    name: "React",
-    class: "bg-[#003159] text-white",
-    icon: React,
-  },
-  CSS: {
-    name: "CSS",
-    class: "bg-[#003159] text-white",
-    icon: CSS,
-  },
-  Bootstrap: {
-    name: "Bootstrap",
-    class: "bg-[#003159] text-white",
-    icon: Bootstrap,
-  },
-  Tailwind: {
-    name: "Tailwind",
-    class: "bg-[#003159] text-white",
-    icon: Tailwind,
-  },
-  Next: {
-    name: "Next.js",
-    class: "bg-[#003159] text-white",
-    icon: NextJS,
-  },
-};
 const PROJECTS = [
   {
+    number: "01",
     title: "MTG Project",
-    description:
-      "Creation and maintenance of the site, a personal project in collaboration with a group of friends who play MTG. Built from scratch with React, Tailwind and Next.js.",
-    link: "https://mtgpox.com/",
+    description: "Personal project in collaboration with friends who play MTG. Full site creation and ongoing maintenance.",
+    link: "https://mtg-theta.vercel.app",
     github: "https://github.com/mendezgd/mtg",
+    tags: ["React", "Next.js", "Tailwind"],
     image: "/projects/mtg.webp",
-    tags: [TAGS.REACT, TAGS.Tailwind, TAGS.Next],
   },
   {
-    title: "MM - Monica & Marcelo Building Administrators",
-    description:
-      "A landing page created for a building administrator company. Built from scratch with React, Tailwind.",
+    number: "02",
+    title: "MM — Building Administrators",
+    description: "Landing page for a building administration company. Clean, professional, and responsive.",
     link: "https://acunaconsorcios.com/",
     github: "https://github.com/mendezgd/MM",
+    tags: ["React", "Tailwind"],
     image: "/projects/mm.webp",
-    tags: [TAGS.REACT, TAGS.Tailwind],
   },
   {
+    number: "03",
     title: "Marlogistic",
-    description:
-      "A landing page created for a logistic company. Built from scratch with React, Tailwind.",
+    description: "Landing page for a logistics company. Built from scratch with React and Tailwind CSS.",
     link: "https://www.marlogistic.com.ar/",
     github: "https://github.com/mendezgd/Marlogistic",
+    tags: ["React", "Tailwind"],
     image: "/projects/marlogistic.webp",
-    tags: [TAGS.REACT, TAGS.Tailwind],
   },
   {
-    title: "FYM - Sanitarios",
-    description:
-      "A landing page created for a sanitary ware company. Built from scratch using Bootstrap, React, and CSS.",
-    link: "https://www.fymsanitarios.com/",
+    number: "04",
+    title: "FYM — Sanitarios",
+    description: "Landing page for a sanitary ware company. Built with Bootstrap, React, and CSS.",
+    link: "https://fym-sanitarios.vercel.app/",
     github: "https://github.com/mendezgd/FyM",
+    tags: ["React", "Bootstrap", "CSS"],
     image: "/projects/fym.webp",
-    tags: [TAGS.REACT, TAGS.CSS, TAGS.Bootstrap],
   },
   {
+    number: "05",
     title: "Black IT",
-    description:
-      "Landing page created for an IT solutions company. Built from scratch with Bootstrap, React, and CSS.",
+    description: "Landing page for an IT solutions company. Built with Bootstrap, React, and CSS.",
     link: "https://black-it.vercel.app/",
     github: "https://github.com/mendezgd/BlackIt",
+    tags: ["React", "Bootstrap", "CSS"],
     image: "/projects/blackit.webp",
-    tags: [TAGS.REACT, TAGS.CSS, TAGS.Bootstrap],
   },
   {
+    number: "06",
     title: "turK's Reader",
-    description:
-      "Manga reader created from scratch with React, Tailwind, and hosted on Firebase.",
+    description: "Manga reader created from scratch with React and Tailwind. Hosted on Firebase.",
     link: "https://turkreader.vercel.app/",
     github: "https://github.com/mendezgd/turkreader",
+    tags: ["React", "Tailwind", "Firebase"],
     image: "/projects/turks.webp",
-    tags: [TAGS.REACT, TAGS.Tailwind],
   },
 ];
 ---
 
-<div class="flex flex-col gap-y-16">
-  {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
-      <article
-        class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0"
-        itemscope
-        itemtype="https://schema.org/CreativeWork"
-      >
-        <div class="w-full md:w-1/2">
-          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-            <img
-              alt={`${title} - Frontend project screenshot`}
-              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
-              loading="lazy"
-              src={image}
-              itemprop="image"
-            />
+<div class="projects-grid">
+  {PROJECTS.map((project, i) => (
+    <article class={`project-card reveal reveal-delay-${(i % 2) + 1}`}>
+      <div class="project-img-wrap">
+        <img
+          src={project.image}
+          alt={`${project.title} — project screenshot`}
+          class="project-img"
+          loading="lazy"
+        />
+        <div class="project-img-overlay"></div>
+      </div>
+      <div class="project-content">
+        <div class="project-top">
+          <span class="project-number">{project.number}</span>
+          <div class="project-tags">
+            {project.tags.map(tag => (
+              <span class="tag">{tag}</span>
+            ))}
           </div>
         </div>
-
-        <div class="w-full md:w-1/2 md:max-w-lg">
-          <h3
-            class="text-2xl font-bold text-gray-800 dark:text-gray-100"
-            itemprop="name"
-          >
-            {title}
-          </h3>
-          <div class="flex flex-wrap mt-2">
-            <ul class="flex flex-row mb-2 gap-x-2">
-              {tags.map((tag) => (
-                <li>
-                  <span
-                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-                  >
-                    <tag.icon class="size-4" />
-                    {tag.name}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <div
-              class="mt-2 text-gray-700 dark:text-gray-400"
-              itemprop="description"
-            >
-              {description}
-            </div>
-            <footer class="flex items-end justify-start mt-4 gap-x-4">
-              {github && (
-                <SocialPill
-                  href={github}
-                  aria-label={`View ${title} source code on GitHub`}
-                >
-                  <GitHub class="size-6" />
-                  Code
-                </SocialPill>
-              )}
-              {link && (
-                <SocialPill
-                  href={link}
-                  aria-label={`Visit ${title} live website`}
-                >
-                  <Link class="size-4" />
-                  Preview
-                </SocialPill>
-              )}
-            </footer>
-          </div>
+        <h3 class="project-title">{project.title}</h3>
+        <p class="project-desc">{project.description}</p>
+        <div class="project-links">
+          {project.link && (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link primary">
+              Visit →
+            </a>
+          )}
+          {project.github && (
+            <a href={project.github} target="_blank" rel="noopener noreferrer" class="project-link">
+              Code →
+            </a>
+          )}
         </div>
-      </article>
-    ))
-  }
+      </div>
+    </article>
+  ))}
 </div>
 
-<script
-  type="application/ld+json"
-  set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Portfolio Projects",
-    description:
-      "Frontend development projects showcasing React, JavaScript, and modern web technologies",
-    itemListElement: PROJECTS.map((project, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "CreativeWork",
-        name: project.title,
-        description: project.description,
-        url: project.link,
-        image: new URL(project.image, Astro.site),
-        author: {
-          "@type": "Person",
-          name: "Gustavo D. Mendez",
-        },
-        creator: {
-          "@type": "Person",
-          name: "Gustavo D. Mendez",
-        },
-      },
-    })),
-  })}
-/>
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .project-card {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background 0.25s;
+  }
+
+  .project-card:hover {
+    background: var(--bg-alt);
+  }
+
+  .project-img-wrap {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: grayscale(20%);
+  }
+
+  .project-card:hover .project-img {
+    transform: scale(1.04);
+    filter: grayscale(0%);
+  }
+
+  .project-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(245,240,232,0.3) 0%, transparent 50%);
+  }
+
+  .project-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .project-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .project-number {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-ghost);
+    font-weight: 500;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    justify-content: flex-end;
+  }
+
+  .tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-ghost);
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.5rem;
+    border-radius: 0;
+  }
+
+  .project-title {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .project-desc {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    flex: 1;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .project-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-ghost);
+    transition: color 0.2s;
+  }
+
+  .project-link.primary { color: var(--ink-soft); }
+  .project-link:hover { color: var(--ink); }
+
+  @media (max-width: 680px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

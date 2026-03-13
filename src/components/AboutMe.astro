@@ -1,17 +1,102 @@
 ---
-
+const skills = [
+  "React", "Next.js", "JavaScript", "TypeScript",
+  "Tailwind CSS", "Bootstrap", "CSS", "HTML",
+  "Git", "GitHub", "Firebase",
+];
 ---
 
-<article
-  class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row"
->
-  <div
-    class="[&>p]:mb-4 [&>p>strong]:text-blue-400 dark:[&>p>strong]:text-blue-200 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
-  >
+<div class="about-wrap">
+  <div class="about-text reveal">
     <p>
-      <strong>Frontend Developer</strong> with a background in technical support
-      at companies like Microsoft and Atos. I specialize in creating
-      <strong>efficient and attractive user interfaces.</strong>
+      Frontend Developer with a background in technical support at
+      companies like <strong>Microsoft</strong> and <strong>Atos</strong>.
+    </p>
+    <p>
+      I specialize in creating <strong>efficient and attractive user interfaces</strong>
+      — translating ideas into clean, working web experiences.
+    </p>
+    <p>
+      Based in Buenos Aires, Argentina. Currently open to freelance
+      and full-time opportunities.
     </p>
   </div>
-</article>
+
+  <div class="about-skills reveal reveal-delay-2">
+    <span class="skills-label">Stack</span>
+    <ul class="skills-list">
+      {skills.map(skill => (
+        <li class="skill-item">{skill}</li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .about-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .about-text p {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+
+  .about-text strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .about-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .skills-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-ghost);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    display: block;
+  }
+
+  .skills-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .skill-item {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, padding-left 0.2s;
+  }
+
+  .skill-item:hover {
+    color: var(--ink);
+    padding-left: 0.5rem;
+  }
+
+  @media (max-width: 680px) {
+    .about-wrap {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>
