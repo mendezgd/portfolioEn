@@ -2,7 +2,8 @@
 const PROJECTS = [
   {
     number: "01",
-    title: "MTG Project",
+    title_en: "MTG Project",
+    title_es: "Proyecto MTG",
     desc_en: "Personal project in collaboration with friends who play MTG. Full site creation and ongoing maintenance.",
     desc_es: "Proyecto personal en colaboración con amigos que juegan MTG. Creación y mantenimiento del sitio.",
     link: "https://mtg-theta.vercel.app",
@@ -12,7 +13,8 @@ const PROJECTS = [
   },
   {
     number: "02",
-    title: "MM — Building Administrators",
+    title_en: "MM — Building Administrators",
+    title_es: "MM — Administradora de Edificios",
     desc_en: "Landing page for a building administration company. Clean, professional, and responsive.",
     desc_es: "Landing page para una empresa administradora de edificios. Limpia, profesional y responsive.",
     link: "https://acunaconsorcios.com/",
@@ -22,7 +24,8 @@ const PROJECTS = [
   },
   {
     number: "03",
-    title: "Marlogistic",
+    title_en: "Marlogistic",
+    title_es: "Marlogistic",
     desc_en: "Landing page for a logistics company. Built from scratch with React and Tailwind CSS.",
     desc_es: "Landing page para una empresa de logística. Desarrollado desde cero con React y Tailwind CSS.",
     link: "https://www.marlogistic.com.ar/",
@@ -32,7 +35,8 @@ const PROJECTS = [
   },
   {
     number: "04",
-    title: "FYM — Sanitarios",
+    title_en: "FYM — Sanitarios",
+    title_es: "FYM — Sanitarios",
     desc_en: "Landing page for a sanitary ware company. Built with Bootstrap, React, and CSS.",
     desc_es: "Landing page para una empresa de sanitarios. Desarrollado con Bootstrap, React y CSS.",
     link: "https://fym-sanitarios.vercel.app/",
@@ -42,7 +46,8 @@ const PROJECTS = [
   },
   {
     number: "05",
-    title: "Black IT",
+    title_en: "Black IT",
+    title_es: "Black IT",
     desc_en: "Landing page for an IT solutions company. Built with Bootstrap, React, and CSS.",
     desc_es: "Landing page para una empresa de soluciones IT. Desarrollado con Bootstrap, React y CSS.",
     link: "https://black-it.vercel.app/",
@@ -52,7 +57,8 @@ const PROJECTS = [
   },
   {
     number: "06",
-    title: "turK's Reader",
+    title_en: "turK's Reader",
+    title_es: "turK's Reader",
     desc_en: "Manga reader built from scratch with React and Tailwind. Hosted on Firebase.",
     desc_es: "Lector de manga construido desde cero con React y Tailwind. Alojado en Firebase.",
     link: "https://turkreader.vercel.app/",
@@ -67,7 +73,12 @@ const PROJECTS = [
   {PROJECTS.map((project, i) => (
     <article class={`project-card reveal reveal-delay-${(i % 2) + 1}`}>
       <div class="project-img-wrap">
-        <img src={project.image} alt={`${project.title} — project screenshot`} class="project-img" loading="lazy" />
+        <img
+          src={project.image}
+          alt={`${project.title_en} — project screenshot`}
+          class="project-img"
+          loading="lazy"
+        />
         <div class="project-img-overlay"></div>
       </div>
       <div class="project-content">
@@ -77,11 +88,17 @@ const PROJECTS = [
             {project.tags.map(tag => <span class="tag">{tag}</span>)}
           </div>
         </div>
-        <h3 class="project-title">{project.title}</h3>
+
+        <h3 class="project-title">
+          <span class="proj-title-en">{project.title_en}</span>
+          <span class="proj-title-es" style="display:none">{project.title_es}</span>
+        </h3>
+
         <p class="project-desc">
-          <span class="desc-en">{project.desc_en}</span>
-          <span class="desc-es" style="display:none">{project.desc_es}</span>
+          <span class="proj-desc-en">{project.desc_en}</span>
+          <span class="proj-desc-es" style="display:none">{project.desc_es}</span>
         </p>
+
         <div class="project-links">
           {project.link && (
             <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link primary" data-i18n="proj_visit">Visit →</a>
@@ -127,12 +144,25 @@ const PROJECTS = [
   (function() {
     function applyProjLang(lang) {
       var isEs = lang === 'es';
-      document.querySelectorAll('.project-desc .desc-en, .project-desc .desc-es').forEach(function(el) {
-        var isEnEl = el.classList.contains('desc-en');
-        el.style.display = (isEs ? !isEnEl : isEnEl) ? 'inline' : 'none';
+
+      document.querySelectorAll('.proj-title-en').forEach(function(el) {
+        el.style.display = isEs ? 'none' : 'inline';
+      });
+      document.querySelectorAll('.proj-title-es').forEach(function(el) {
+        el.style.display = isEs ? 'inline' : 'none';
+      });
+      document.querySelectorAll('.proj-desc-en').forEach(function(el) {
+        el.style.display = isEs ? 'none' : 'inline';
+      });
+      document.querySelectorAll('.proj-desc-es').forEach(function(el) {
+        el.style.display = isEs ? 'inline' : 'none';
       });
     }
+
     applyProjLang(localStorage.getItem('lang') || 'en');
-    document.addEventListener('lang-change', function(e) { applyProjLang(e.detail); });
+
+    document.addEventListener('lang-change', function(e) {
+      applyProjLang(e.detail);
+    });
   })();
 </script>

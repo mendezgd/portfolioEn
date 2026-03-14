@@ -1,4 +1,3 @@
-// Central i18n script — included once in Layout, runs on every page
 window.__translations = {
   en: {
     nav_experience:   "Experience",
@@ -62,20 +61,13 @@ function applyLang(lang) {
   var t = window.__translations[lang];
   if (!t) return;
 
-  // All elements with data-i18n get their textContent swapped
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.getAttribute('data-i18n');
     if (t[key] !== undefined) {
-      // Use innerHTML for keys that contain <strong> tags
-      if (key.startsWith('about_p') || key === 'about_p1' || key === 'about_p2' || key === 'about_p3') {
-        el.innerHTML = t[key];
-      } else {
-        el.textContent = t[key];
-      }
+      el.textContent = t[key];
     }
   });
 
-  // Keys that need innerHTML (contain HTML tags)
   document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
     var key = el.getAttribute('data-i18n-html');
     if (t[key] !== undefined) {
@@ -83,17 +75,19 @@ function applyLang(lang) {
     }
   });
 
-  // Update html lang attribute
   document.documentElement.setAttribute('lang', lang);
 }
 
-// Apply on load
-(function() {
+// Expose globally so Header script can trigger it directly
+window.__applyLang = applyLang;
+
+// Apply saved language once DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
   var lang = localStorage.getItem('lang') || 'en';
   applyLang(lang);
+});
 
-  // Listen for toggle events from Header
-  document.addEventListener('lang-change', function(e) {
-    applyLang(e.detail);
-  });
-})();
+// Also listen for runtime toggle events
+document.addEventListener('lang-change', function(e) {
+  applyLang(e.detail);
+});
