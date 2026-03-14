@@ -5,9 +5,9 @@
   <div class="hero-inner">
 
     <div class="hero-meta reveal">
-      <span class="meta-label">Frontend Developer</span>
+      <span class="meta-label" data-i18n="hero_role">Frontend Developer</span>
       <span class="meta-sep">·</span>
-      <span class="meta-label">Buenos Aires, AR</span>
+      <span class="meta-label" data-i18n="hero_location">Buenos Aires, AR</span>
       <span class="meta-sep">·</span>
       <a
         href="https://www.linkedin.com/in/gmendez1988/"
@@ -17,7 +17,7 @@
         aria-label="Available to work - LinkedIn"
       >
         <span class="dot-pulse"></span>
-        Available
+        <span data-i18n="hero_available">Available</span>
       </a>
     </div>
 
@@ -27,8 +27,8 @@
     </h1>
 
     <p class="hero-tagline reveal reveal-delay-2">
-      I build efficient,<br />
-      <em>memorable interfaces.</em>
+      <span data-i18n="hero_tagline">I build efficient,</span><br />
+      <em data-i18n="hero_tagline_em">memorable interfaces.</em>
     </p>
 
     <div class="hero-links reveal reveal-delay-3">
@@ -55,10 +55,10 @@
   </div>
 
   <div class="hero-index reveal reveal-delay-4">
-    <span>01 / Experience</span>
-    <span>02 / Projects</span>
-    <span>03 / About</span>
-    <span>04 / Certificates</span>
+    <span data-i18n="hero_index_1">01 / Experience</span>
+    <span data-i18n="hero_index_2">02 / Projects</span>
+    <span data-i18n="hero_index_3">03 / About</span>
+    <span data-i18n="hero_index_4">04 / Certificates</span>
   </div>
 </section>
 
@@ -73,11 +73,7 @@
     max-width: 900px;
     margin: 0 auto;
   }
-
-  .hero-inner {
-    padding-top: 80px;
-  }
-
+  .hero-inner { padding-top: 80px; }
   .hero-meta {
     display: flex;
     align-items: center;
@@ -88,9 +84,7 @@
     text-transform: uppercase;
     color: var(--ink-ghost);
   }
-
   .meta-sep { opacity: 0.4; }
-
   .meta-available {
     display: flex;
     align-items: center;
@@ -99,22 +93,18 @@
     font-weight: 500;
     transition: opacity 0.2s;
   }
-
   .meta-available:hover { opacity: 0.7; }
-
   .dot-pulse {
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background: #2A7A2A;
     animation: pulse 2.5s ease-in-out infinite;
+    flex-shrink: 0;
   }
-
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50%       { opacity: 0.4; transform: scale(0.8); }
   }
-
   .hero-name {
     font-family: var(--font-mono);
     font-weight: 300;
@@ -124,14 +114,8 @@
     color: var(--ink);
     margin-bottom: 2rem;
   }
-
   .name-first { display: block; }
-  .name-last  {
-    display: block;
-    color: var(--ink-ghost);
-    padding-left: 0.08em;
-  }
-
+  .name-last  { display: block; color: var(--ink-ghost); padding-left: 0.08em; }
   .hero-tagline {
     font-family: var(--font-mono);
     font-weight: 300;
@@ -142,18 +126,8 @@
     border-left: 2px solid var(--border);
     padding-left: 1.25rem;
   }
-
-  .hero-tagline em {
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .hero-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 2rem;
-  }
-
+  .hero-tagline em { font-style: italic; color: var(--ink); }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; }
   .hero-link {
     font-size: 0.8rem;
     letter-spacing: 0.03em;
@@ -165,17 +139,10 @@
     border-bottom: 1px solid var(--border);
     padding-bottom: 1px;
   }
-
-  .hero-link:hover {
-    color: var(--ink);
-    border-bottom-color: var(--ink);
-  }
-
-  /* Floating index in bottom-right */
+  .hero-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
   .hero-index {
     position: absolute;
-    bottom: 3rem;
-    right: 2rem;
+    bottom: 3rem; right: 2rem;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -185,7 +152,6 @@
     text-transform: uppercase;
     color: var(--ink-ghost);
   }
-
   @media (max-width: 600px) {
     .hero { padding: 0 1.25rem; }
     .hero-index { display: none; }

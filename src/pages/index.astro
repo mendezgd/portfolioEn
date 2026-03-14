@@ -1,75 +1,84 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import AboutMe from "@/components/AboutMe.astro";
-import Briefcase from "@/components/icons/Briefcase.astro";
-import CodeIcon from "@/components/icons/Code.astro";
-import Experience from "@/components/Experience.astro";
-import ProfileCheck from "@/components/icons/ProfileCheck.astro";
-import Projects from "@/components/Projects.astro";
-import SectionContainer from "@/components/SectionContainer.astro";
+import Header from "@/components/Header.astro";
 import Hero from "@/components/Hero.astro";
+import Experience from "@/components/Experience.astro";
+import Projects from "@/components/Projects.astro";
+import AboutMe from "@/components/AboutMe.astro";
 import Certificados from "@/components/Certificados.astro";
-import Certificate from "@/components/icons/Certificate.astro";
-
-const seoData = {
-  title: "Gustavo D. Mendez - Frontend Developer Portfolio | React, JavaScript, TypeScript",
-  description: "Frontend Developer with 2+ years of experience specializing in React, JavaScript, and modern web technologies. Based in Buenos Aires, Argentina. View my projects and experience.",
-  keywords: "frontend developer, react developer, javascript developer, web developer, buenos aires, argentina, portfolio, react, typescript, css, html, bootstrap, tailwind",
-  image: "/perfil.webp",
-  type: "profile"
-};
+import Footer from "@/components/Footer.astro";
 ---
 
 <Layout
-  title={seoData.title}
-  description={seoData.description}
-  image={seoData.image}
-  type={seoData.type}
+  title="Gustavo D. Mendez — Frontend Developer"
+  description="Frontend Developer specializing in React, JavaScript, and modern web technologies. Based in Buenos Aires, Argentina."
+  image="/perfil.webp"
+  type="profile"
 >
-  <main class="px-4">
-    <SectionContainer class="py-16 md:py-36">
-      <Hero />
-    </SectionContainer>
+  <Header />
 
-    <div class="space-y-24">
-      <SectionContainer id="experiencia">
-        <h2
-          class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
-        >
-          <Briefcase class="size-8" />
-          Work Experience
-        </h2>
+  <main>
+    <Hero />
+
+    <div class="page-content">
+
+      <section id="experience" class="page-section">
+        <div class="section-label reveal">
+          <span class="label-num">01</span>
+          <span class="label-text" data-i18n="sec_experience">Experience</span>
+        </div>
         <Experience />
-      </SectionContainer>
+      </section>
 
-      <SectionContainer id="proyectos">
-        <h2
-          class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
-        >
-          <CodeIcon class="size-7" />
-          Projects
-        </h2>
+      <section id="projects" class="page-section">
+        <div class="section-label reveal">
+          <span class="label-num">02</span>
+          <span class="label-text" data-i18n="sec_projects">Projects</span>
+        </div>
         <Projects />
-      </SectionContainer>
+      </section>
 
-      <SectionContainer id="sobre-mi">
-        <h2
-          class="flex items-center mb-6 text-3xl font-semibold gap-x-8 text-black/80 dark:text-white"
-        >
-          <ProfileCheck class="size-8" />
-          About Me
-        </h2>
+      <section id="about" class="page-section">
+        <div class="section-label reveal">
+          <span class="label-num">03</span>
+          <span class="label-text" data-i18n="sec_about">About</span>
+        </div>
         <AboutMe />
-      </SectionContainer>
-      <SectionContainer id="Certificados">
-        <h2
-          class="flex items-center mb-6 text-3xl font-semibold gap-x-8 text-black/80 dark:text-white"
-        >
-          <Certificate class="size-8" />
-          Certificates
-        </h2>
+      </section>
+
+      <section id="certificates" class="page-section">
+        <div class="section-label reveal">
+          <span class="label-num">04</span>
+          <span class="label-text" data-i18n="sec_certificates">Certificates</span>
+        </div>
         <Certificados />
-      </SectionContainer>
+      </section>
+
     </div>
   </main>
+
+  <Footer />
 </Layout>
+
+<style>
+  .page-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .page-section { padding: 6rem 0 0; }
+  .section-label {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .label-num  { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--ink-ghost); font-weight: 500; }
+  .label-text { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+  @media (max-width: 600px) {
+    .page-content { padding: 0 1.25rem; }
+    .page-section { padding-top: 4rem; }
+  }
+</style>

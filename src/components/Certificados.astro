@@ -1,7 +1,8 @@
 ---
 const CERTIFICATES = [
   {
-    title: "Frontend Developer",
+    title_en: "Frontend Developer",
+    title_es: "Desarrollador Frontend",
     issuer: "Coderhouse",
     date: "2023",
     link: "https://pub.coderhouse.com/legacy-certificates/64e549d6c5e0d30aab004261?lang=es",
@@ -18,7 +19,7 @@ const CERTIFICATES = [
         <div class="cert-img-wrap">
           <img
             src={cert.image}
-            alt={`${cert.title} certificate — ${cert.issuer}`}
+            alt={`${cert.title_en} certificate — ${cert.issuer}`}
             class="cert-img"
             loading="lazy"
           />
@@ -29,16 +30,14 @@ const CERTIFICATES = [
           <span class="cert-issuer">{cert.issuer}</span>
           <span class="cert-date">{cert.date}</span>
         </div>
-        <h3 class="cert-title">{cert.title}</h3>
+        <h3 class="cert-title">
+          <span class="title-en">{cert.title_en}</span>
+          <span class="title-es" style="display:none">{cert.title_es}</span>
+        </h3>
         <ul class="cert-stack">
           {cert.stack.map(s => <li>{s}</li>)}
         </ul>
-        <a
-          href={cert.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="cert-link"
-        >
+        <a href={cert.link} target="_blank" rel="noopener noreferrer" class="cert-link" data-i18n="cert_view">
           View certificate →
         </a>
       </div>
@@ -47,8 +46,7 @@ const CERTIFICATES = [
 </div>
 
 <style>
-  .certs-list { display: flex; flex-direction: column; gap: 0; }
-
+  .certs-list { display: flex; flex-direction: column; }
   .cert-item {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -57,93 +55,32 @@ const CERTIFICATES = [
     border-bottom: 1px solid var(--border);
     align-items: start;
   }
-
   .cert-item:first-child { border-top: 1px solid var(--border); }
-
-  .cert-img-wrap {
-    border: 1px solid var(--border);
-    overflow: hidden;
-    aspect-ratio: 4/3;
-  }
-
-  .cert-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(30%);
-    transition: filter 0.4s;
-  }
-
+  .cert-img-wrap { border: 1px solid var(--border); overflow: hidden; aspect-ratio: 4/3; }
+  .cert-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%); transition: filter 0.4s; }
   .cert-item:hover .cert-img { filter: grayscale(0%); }
-
-  .cert-info {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-  }
-
-  .cert-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .cert-issuer {
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-ghost);
-    font-weight: 500;
-  }
-
-  .cert-date {
-    font-size: 0.7rem;
-    color: var(--ink-ghost);
-  }
-
-  .cert-title {
-    font-size: 1.4rem;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-  }
-
-  .cert-stack {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  .cert-stack li {
-    font-size: 0.65rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-ghost);
-    border: 1px solid var(--border);
-    padding: 0.2rem 0.6rem;
-  }
-
-  .cert-link {
-    font-size: 0.78rem;
-    letter-spacing: 0.02em;
-    color: var(--ink-soft);
-    transition: color 0.2s;
-    width: fit-content;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1px;
-  }
-
-  .cert-link:hover {
-    color: var(--ink);
-    border-bottom-color: var(--ink);
-  }
-
-  @media (max-width: 680px) {
-    .cert-item {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-  }
+  .cert-info { display: flex; flex-direction: column; gap: 1rem; justify-content: center; }
+  .cert-meta { display: flex; align-items: center; gap: 1rem; }
+  .cert-issuer { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-ghost); font-weight: 500; }
+  .cert-date { font-size: 0.7rem; color: var(--ink-ghost); }
+  .cert-title { font-size: 1.4rem; font-weight: 400; letter-spacing: -0.02em; color: var(--ink); }
+  .cert-stack { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .cert-stack li { font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-ghost); border: 1px solid var(--border); padding: 0.2rem 0.6rem; }
+  .cert-link { font-size: 0.78rem; color: var(--ink-soft); transition: color 0.2s; width: fit-content; border-bottom: 1px solid var(--border); padding-bottom: 1px; }
+  .cert-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  @media (max-width: 680px) { .cert-item { grid-template-columns: 1fr; gap: 1.5rem; } }
 </style>
+
+<script is:inline>
+  (function() {
+    function applyCertLang(lang) {
+      var isEs = lang === 'es';
+      document.querySelectorAll('.cert-title .title-en, .cert-title .title-es').forEach(function(el) {
+        var isEnEl = el.classList.contains('title-en');
+        el.style.display = (isEs ? !isEnEl : isEnEl) ? 'inline' : 'none';
+      });
+    }
+    applyCertLang(localStorage.getItem('lang') || 'en');
+    document.addEventListener('lang-change', function(e) { applyCertLang(e.detail); });
+  })();
+</script>

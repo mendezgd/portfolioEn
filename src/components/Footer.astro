@@ -9,21 +9,16 @@ const currentYear = new Date().getFullYear();
       <span class="footer-copy">© {currentYear}</span>
     </div>
     <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="/#experience">Experience</a>
-      <a href="/#projects">Projects</a>
-      <a href="/#about">About</a>
-      <a href="mailto:mendezgd88@gmail.com">Contact</a>
+      <a href="/#experience" data-i18n="nav_experience">Experience</a>
+      <a href="/#projects"   data-i18n="nav_projects">Projects</a>
+      <a href="/#about"      data-i18n="nav_about">About</a>
+      <a href="mailto:mendezgd88@gmail.com" data-i18n="nav_contact">Contact</a>
     </nav>
   </div>
 </footer>
 
 <style>
-  .site-footer {
-    margin-top: 8rem;
-    border-top: 1px solid var(--border);
-    padding: 2rem;
-  }
-
+  .site-footer { margin-top: 8rem; border-top: 1px solid var(--border); padding: 2rem; }
   .footer-inner {
     max-width: 900px;
     margin: 0 auto;
@@ -33,40 +28,12 @@ const currentYear = new Date().getFullYear();
     flex-wrap: wrap;
     gap: 1rem;
   }
-
-  .footer-left {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .footer-name {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--ink-soft);
-    letter-spacing: -0.01em;
-  }
-
-  .footer-copy {
-    font-size: 0.72rem;
-    color: var(--ink-ghost);
-  }
-
-  .footer-nav {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .footer-nav a {
-    font-size: 0.7rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--ink-ghost);
-    transition: color 0.2s;
-  }
-
+  .footer-left { display: flex; align-items: center; gap: 1rem; }
+  .footer-name { font-size: 0.78rem; font-weight: 500; color: var(--ink-soft); }
+  .footer-copy { font-size: 0.72rem; color: var(--ink-ghost); }
+  .footer-nav { display: flex; gap: 1.5rem; }
+  .footer-nav a { font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-ghost); transition: color 0.2s; }
   .footer-nav a:hover { color: var(--ink); }
-
   @media (max-width: 500px) {
     .footer-inner { flex-direction: column; align-items: flex-start; }
     .footer-nav { flex-wrap: wrap; gap: 1rem; }
