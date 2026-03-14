@@ -41,6 +41,16 @@ const EXPERIENCE = [
     link: "https://fym-sanitarios.vercel.app/",
   },
   {
+    date_en: "Mar 2024 — Present",
+    date_es: "Mar 2024 — Presente",
+    title_en: "Frontend Developer",
+    title_es: "Desarrollador Frontend",
+    company: "Black IT",
+    desc_en: "Web creation and maintenance for an IT solutions company, working for 3 years building and updating their web presence.",
+    desc_es: "Creación y mantenimiento web para una empresa de soluciones IT, trabajando hace 3 años en la construcción y actualización de su presencia digital.",
+    link: "https://black-it.vercel.app/",
+  },
+  {
     date_en: "Jul 2016 — Present",
     date_es: "Jul 2016 — Presente",
     title_en: "Help Desk Specialist",
@@ -128,28 +138,3 @@ const EXPERIENCE = [
     .exp-item { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.5rem 0; }
   }
 </style>
-
-<script is:inline>
-  (function() {
-    function applyExpLang(lang) {
-      var isEs = lang === 'es';
-      document.querySelectorAll('.date-en, .date-es').forEach(function(el) {
-        var isEnEl = el.classList.contains('date-en');
-        el.style.display = (isEs ? !isEnEl : isEnEl) ? 'inline' : 'none';
-      });
-      document.querySelectorAll('.title-en, .title-es').forEach(function(el) {
-        var isEnEl = el.classList.contains('title-en');
-        el.style.display = (isEs ? !isEnEl : isEnEl) ? 'inline' : 'none';
-      });
-      document.querySelectorAll('.desc-en, .desc-es').forEach(function(el) {
-        var isEnEl = el.classList.contains('desc-en');
-        el.style.display = (isEs ? !isEnEl : isEnEl) ? 'inline' : 'none';
-      });
-    }
-
-    applyExpLang(localStorage.getItem('lang') || 'en');
-    document.addEventListener('lang-change', function(e) {
-      applyExpLang(e.detail);
-    });
-  })();
-</script>

@@ -139,30 +139,3 @@ const PROJECTS = [
   .project-link:hover { color: var(--ink); }
   @media (max-width: 680px) { .projects-grid { grid-template-columns: 1fr; } }
 </style>
-
-<script is:inline>
-  (function() {
-    function applyProjLang(lang) {
-      var isEs = lang === 'es';
-
-      document.querySelectorAll('.proj-title-en').forEach(function(el) {
-        el.style.display = isEs ? 'none' : 'inline';
-      });
-      document.querySelectorAll('.proj-title-es').forEach(function(el) {
-        el.style.display = isEs ? 'inline' : 'none';
-      });
-      document.querySelectorAll('.proj-desc-en').forEach(function(el) {
-        el.style.display = isEs ? 'none' : 'inline';
-      });
-      document.querySelectorAll('.proj-desc-es').forEach(function(el) {
-        el.style.display = isEs ? 'inline' : 'none';
-      });
-    }
-
-    applyProjLang(localStorage.getItem('lang') || 'en');
-
-    document.addEventListener('lang-change', function(e) {
-      applyProjLang(e.detail);
-    });
-  })();
-</script>

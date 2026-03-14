@@ -70,17 +70,3 @@ const CERTIFICATES = [
   .cert-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
   @media (max-width: 680px) { .cert-item { grid-template-columns: 1fr; gap: 1.5rem; } }
 </style>
-
-<script is:inline>
-  (function() {
-    function applyCertLang(lang) {
-      var isEs = lang === 'es';
-      document.querySelectorAll('.cert-title .title-en, .cert-title .title-es').forEach(function(el) {
-        var isEnEl = el.classList.contains('title-en');
-        el.style.display = (isEs ? !isEnEl : isEnEl) ? 'inline' : 'none';
-      });
-    }
-    applyCertLang(localStorage.getItem('lang') || 'en');
-    document.addEventListener('lang-change', function(e) { applyCertLang(e.detail); });
-  })();
-</script>

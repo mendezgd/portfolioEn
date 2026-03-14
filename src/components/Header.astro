@@ -180,14 +180,8 @@
         var next    = current === 'en' ? 'es' : 'en';
         localStorage.setItem('lang', next);
         syncLangLabel();
-
-        // Call i18n function directly if already loaded,
-        // otherwise dispatch event as fallback
-        if (typeof window.__applyLang === 'function') {
-          window.__applyLang(next);
-        } else {
-          document.dispatchEvent(new CustomEvent('lang-change', { detail: next }));
-        }
+        // __applyLang is defined in Layout.astro is:inline — always available
+        window.__applyLang(next);
       });
     }
   })();

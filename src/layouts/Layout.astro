@@ -162,7 +162,7 @@ const canonical = canonicalURL ? new URL(canonicalURL, Astro.site) : Astro.url;
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
 
-    <!-- i18n inline script — runs after full DOM is painted -->
+    <!-- i18n — single source of truth for all language switching -->
     <script is:inline>
       window.__translations = {
         en: {
@@ -204,26 +204,52 @@ const canonical = canonicalURL ? new URL(canonicalURL, Astro.site) : Astro.url;
       function applyLang(lang) {
         var t = window.__translations[lang];
         if (!t) return;
+        var isEs = (lang === 'es');
+
+        // 1. data-i18n — simple text nodes
         document.querySelectorAll('[data-i18n]').forEach(function(el) {
           var key = el.getAttribute('data-i18n');
           if (t[key] !== undefined) el.textContent = t[key];
         });
+
+        // 2. data-i18n-html — nodes with inner HTML (bold tags etc)
         document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
           var key = el.getAttribute('data-i18n-html');
           if (t[key] !== undefined) el.innerHTML = t[key];
         });
+
+        // 3. Bilingual span pairs — Experience dates/titles/descs, Projects, Certs
+        var pairs = [
+          ['date-en',       'date-es'],
+          ['title-en',      'title-es'],
+          ['desc-en',       'desc-es'],
+          ['proj-title-en', 'proj-title-es'],
+          ['proj-desc-en',  'proj-desc-es'],
+        ];
+        pairs.forEach(function(pair) {
+          document.querySelectorAll('.' + pair[0]).forEach(function(el) {
+            el.style.display = isEs ? 'none' : 'inline';
+          });
+          document.querySelectorAll('.' + pair[1]).forEach(function(el) {
+            el.style.display = isEs ? 'inline' : 'none';
+          });
+        });
+
+        // 4. Certificate title spans
+        document.querySelectorAll('.cert-title .title-en').forEach(function(el) {
+          el.style.display = isEs ? 'none' : 'inline';
+        });
+        document.querySelectorAll('.cert-title .title-es').forEach(function(el) {
+          el.style.display = isEs ? 'inline' : 'none';
+        });
+
         document.documentElement.setAttribute('lang', lang);
       }
 
       window.__applyLang = applyLang;
 
-      // Apply on load
+      // Apply saved language on every page load
       applyLang(localStorage.getItem('lang') || 'en');
-
-      // Listen for runtime toggle
-      document.addEventListener('lang-change', function(e) {
-        applyLang(e.detail);
-      });
     </script>
   </body>
 </html>
