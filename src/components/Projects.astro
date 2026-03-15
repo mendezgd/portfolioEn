@@ -4,9 +4,11 @@ const PROJECTS = [
     number: "01",
     title_en: "MTG Project",
     title_es: "Proyecto MTG",
-    desc_en: "Personal project in collaboration with friends who play MTG. Full site creation and ongoing maintenance.",
-    desc_es: "Proyecto personal en colaboración con amigos que juegan MTG. Creación y mantenimiento del sitio.",
-    link: "https://mtg-theta.vercel.app",
+    desc_en:
+      "Personal project in collaboration with friends who play MTG. Full site creation and ongoing maintenance.",
+    desc_es:
+      "Proyecto personal en colaboración con amigos que juegan MTG. Creación y mantenimiento del sitio.",
+    link: "https://mtgpox.com",
     github: "https://github.com/mendezgd/mtg",
     tags: ["React", "Next.js", "Tailwind"],
     image: "/projects/mtg.webp",
@@ -15,8 +17,10 @@ const PROJECTS = [
     number: "02",
     title_en: "MM — Building Administrators",
     title_es: "MM — Administradora de Edificios",
-    desc_en: "Landing page for a building administration company. Clean, professional, and responsive.",
-    desc_es: "Landing page para una empresa administradora de edificios. Limpia, profesional y responsive.",
+    desc_en:
+      "Landing page for a building administration company. Clean, professional, and responsive.",
+    desc_es:
+      "Landing page para una empresa administradora de edificios. Limpia, profesional y responsive.",
     link: "https://acunaconsorcios.com/",
     github: "https://github.com/mendezgd/MM",
     tags: ["React", "Tailwind"],
@@ -26,8 +30,10 @@ const PROJECTS = [
     number: "03",
     title_en: "Marlogistic",
     title_es: "Marlogistic",
-    desc_en: "Landing page for a logistics company. Built from scratch with React and Tailwind CSS.",
-    desc_es: "Landing page para una empresa de logística. Desarrollado desde cero con React y Tailwind CSS.",
+    desc_en:
+      "Landing page for a logistics company. Built from scratch with React and Tailwind CSS.",
+    desc_es:
+      "Landing page para una empresa de logística. Desarrollado desde cero con React y Tailwind CSS.",
     link: "https://www.marlogistic.com.ar/",
     github: "https://github.com/mendezgd/Marlogistic",
     tags: ["React", "Tailwind"],
@@ -37,8 +43,10 @@ const PROJECTS = [
     number: "04",
     title_en: "FYM — Sanitarios",
     title_es: "FYM — Sanitarios",
-    desc_en: "Landing page for a sanitary ware company. Built with Bootstrap, React, and CSS.",
-    desc_es: "Landing page para una empresa de sanitarios. Desarrollado con Bootstrap, React y CSS.",
+    desc_en:
+      "Landing page for a sanitary ware company. Built with Bootstrap, React, and CSS.",
+    desc_es:
+      "Landing page para una empresa de sanitarios. Desarrollado con Bootstrap, React y CSS.",
     link: "https://fym-sanitarios.vercel.app/",
     github: "https://github.com/mendezgd/FyM",
     tags: ["React", "Bootstrap", "CSS"],
@@ -48,9 +56,11 @@ const PROJECTS = [
     number: "05",
     title_en: "Black IT",
     title_es: "Black IT",
-    desc_en: "Landing page for an IT solutions company. Built with Bootstrap, React, and CSS.",
-    desc_es: "Landing page para una empresa de soluciones IT. Desarrollado con Bootstrap, React y CSS.",
-    link: "https://black-it.vercel.app/",
+    desc_en:
+      "Landing page for an IT solutions company. Built with Bootstrap, React, and CSS.",
+    desc_es:
+      "Landing page para una empresa de soluciones IT. Desarrollado con Bootstrap, React y CSS.",
+    link: "https://newblackit.vercel.app/",
     github: "https://github.com/mendezgd/BlackIt",
     tags: ["React", "Bootstrap", "CSS"],
     image: "/projects/blackit.webp",
@@ -59,8 +69,10 @@ const PROJECTS = [
     number: "06",
     title_en: "turK's Reader",
     title_es: "turK's Reader",
-    desc_en: "Manga reader built from scratch with React and Tailwind. Hosted on Firebase.",
-    desc_es: "Lector de manga construido desde cero con React y Tailwind. Alojado en Firebase.",
+    desc_en:
+      "Manga reader built from scratch with React and Tailwind. Hosted on Firebase.",
+    desc_es:
+      "Lector de manga construido desde cero con React y Tailwind. Alojado en Firebase.",
     link: "https://turkreader.vercel.app/",
     github: "https://github.com/mendezgd/turkreader",
     tags: ["React", "Tailwind", "Firebase"],
@@ -70,46 +82,70 @@ const PROJECTS = [
 ---
 
 <div class="projects-grid">
-  {PROJECTS.map((project, i) => (
-    <article class={`project-card reveal reveal-delay-${(i % 2) + 1}`}>
-      <div class="project-img-wrap">
-        <img
-          src={project.image}
-          alt={`${project.title_en} — project screenshot`}
-          class="project-img"
-          loading="lazy"
-        />
-        <div class="project-img-overlay"></div>
-      </div>
-      <div class="project-content">
-        <div class="project-top">
-          <span class="project-number">{project.number}</span>
-          <div class="project-tags">
-            {project.tags.map(tag => <span class="tag">{tag}</span>)}
+  {
+    PROJECTS.map((project, i) => (
+      <article class={`project-card reveal reveal-delay-${(i % 2) + 1}`}>
+        <div class="project-img-wrap">
+          <img
+            src={project.image}
+            alt={`${project.title_en} — project screenshot`}
+            class="project-img"
+            loading="lazy"
+          />
+          <div class="project-img-overlay" />
+        </div>
+        <div class="project-content">
+          <div class="project-top">
+            <span class="project-number">{project.number}</span>
+            <div class="project-tags">
+              {project.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+
+          <h3 class="project-title">
+            <span class="proj-title-en">{project.title_en}</span>
+            <span class="proj-title-es" style="display:none">
+              {project.title_es}
+            </span>
+          </h3>
+
+          <p class="project-desc">
+            <span class="proj-desc-en">{project.desc_en}</span>
+            <span class="proj-desc-es" style="display:none">
+              {project.desc_es}
+            </span>
+          </p>
+
+          <div class="project-links">
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-link primary"
+                data-i18n="proj_visit"
+              >
+                Visit →
+              </a>
+            )}
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-link"
+                data-i18n="proj_code"
+              >
+                Code →
+              </a>
+            )}
           </div>
         </div>
-
-        <h3 class="project-title">
-          <span class="proj-title-en">{project.title_en}</span>
-          <span class="proj-title-es" style="display:none">{project.title_es}</span>
-        </h3>
-
-        <p class="project-desc">
-          <span class="proj-desc-en">{project.desc_en}</span>
-          <span class="proj-desc-es" style="display:none">{project.desc_es}</span>
-        </p>
-
-        <div class="project-links">
-          {project.link && (
-            <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link primary" data-i18n="proj_visit">Visit →</a>
-          )}
-          {project.github && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" class="project-link" data-i18n="proj_code">Code →</a>
-          )}
-        </div>
-      </div>
-    </article>
-  ))}
+      </article>
+    ))
+  }
 </div>
 
 <style>
@@ -120,22 +156,111 @@ const PROJECTS = [
     background: var(--border);
     border: 1px solid var(--border);
   }
-  .project-card { background: var(--bg); display: flex; flex-direction: column; overflow: hidden; transition: background 0.25s; }
-  .project-card:hover { background: var(--bg-alt); }
-  .project-img-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; border-bottom: 1px solid var(--border); }
-  .project-img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); filter: grayscale(20%); }
-  .project-card:hover .project-img { transform: scale(1.04); filter: grayscale(0%); }
-  .project-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(245,240,232,0.3) 0%, transparent 50%); }
-  .project-content { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; flex: 1; }
-  .project-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-  .project-number { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--ink-ghost); font-weight: 500; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; justify-content: flex-end; }
-  .tag { font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-ghost); border: 1px solid var(--border); padding: 0.15rem 0.5rem; }
-  .project-title { font-size: 1rem; font-weight: 500; letter-spacing: -0.02em; color: var(--ink); line-height: 1.2; }
-  .project-desc { font-size: 0.78rem; line-height: 1.6; color: var(--ink-soft); flex: 1; }
-  .project-links { display: flex; gap: 1.25rem; margin-top: auto; padding-top: 0.5rem; border-top: 1px solid var(--border); }
-  .project-link { font-size: 0.72rem; letter-spacing: 0.04em; color: var(--ink-ghost); transition: color 0.2s; }
-  .project-link.primary { color: var(--ink-soft); }
-  .project-link:hover { color: var(--ink); }
-  @media (max-width: 680px) { .projects-grid { grid-template-columns: 1fr; } }
+  .project-card {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background 0.25s;
+  }
+  .project-card:hover {
+    background: var(--bg-alt);
+  }
+  .project-img-wrap {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: grayscale(20%);
+  }
+  .project-card:hover .project-img {
+    transform: scale(1.04);
+    filter: grayscale(0%);
+  }
+  .project-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(245, 240, 232, 0.3) 0%,
+      transparent 50%
+    );
+  }
+  .project-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+  .project-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .project-number {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-ghost);
+    font-weight: 500;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    justify-content: flex-end;
+  }
+  .tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-ghost);
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.5rem;
+  }
+  .project-title {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .project-desc {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    flex: 1;
+  }
+  .project-links {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .project-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-ghost);
+    transition: color 0.2s;
+  }
+  .project-link.primary {
+    color: var(--ink-soft);
+  }
+  .project-link:hover {
+    color: var(--ink);
+  }
+  @media (max-width: 680px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

@@ -6,9 +6,11 @@ const EXPERIENCE = [
     title_en: "Frontend Developer",
     title_es: "Desarrollador Frontend",
     company: "MTG Project",
-    desc_en: "Creation and maintenance of the site, a personal project in collaboration with a group of friends who play MTG.",
-    desc_es: "Creación y mantenimiento del sitio, un proyecto personal en colaboración con amigos que juegan MTG.",
-    link: "https://mtg-theta.vercel.app",
+    desc_en:
+      "Creation and maintenance of the site, a personal project in collaboration with a group of friends who play MTG.",
+    desc_es:
+      "Creación y mantenimiento del sitio, un proyecto personal en colaboración con amigos que juegan MTG.",
+    link: "https://mtgpox.com",
   },
   {
     date_en: "Jun 2025 — Present",
@@ -36,8 +38,10 @@ const EXPERIENCE = [
     title_en: "Frontend Developer",
     title_es: "Desarrollador Frontend",
     company: "FyM Sanitarios",
-    desc_en: "Creation and maintenance of the current website and development of a new eCommerce site using React (work in progress).",
-    desc_es: "Creación y mantenimiento del sitio actual y desarrollo de uno nuevo orientado a eCommerce con React (en progreso).",
+    desc_en:
+      "Creation and maintenance of the current website and development of a new eCommerce site using React (work in progress).",
+    desc_es:
+      "Creación y mantenimiento del sitio actual y desarrollo de uno nuevo orientado a eCommerce con React (en progreso).",
     link: "https://fym-sanitarios.vercel.app/",
   },
   {
@@ -46,9 +50,11 @@ const EXPERIENCE = [
     title_en: "Frontend Developer",
     title_es: "Desarrollador Frontend",
     company: "Black IT",
-    desc_en: "Web creation and maintenance for an IT solutions company, working for 3 years building and updating their web presence.",
-    desc_es: "Creación y mantenimiento web para una empresa de soluciones IT, trabajando hace 3 años en la construcción y actualización de su presencia digital.",
-    link: "https://black-it.vercel.app/",
+    desc_en:
+      "Web creation and maintenance for an IT solutions company, working for 3 years building and updating their web presence.",
+    desc_es:
+      "Creación y mantenimiento web para una empresa de soluciones IT, trabajando hace 3 años en la construcción y actualización de su presencia digital.",
+    link: "https://newblackit.vercel.app/",
   },
   {
     date_en: "Jul 2016 — Present",
@@ -56,8 +62,10 @@ const EXPERIENCE = [
     title_en: "Help Desk Specialist",
     title_es: "Especialista Help Desk",
     company: "Ribeiro",
-    desc_en: "Help Desk Specialist, Active Directory admin, Mail admin, Credit Cards homologation.",
-    desc_es: "Especialista Help Desk, administración de Active Directory, correo y homologación de tarjetas de crédito.",
+    desc_en:
+      "Help Desk Specialist, Active Directory admin, Mail admin, Credit Cards homologation.",
+    desc_es:
+      "Especialista Help Desk, administración de Active Directory, correo y homologación de tarjetas de crédito.",
   },
   {
     date_en: "Sep 2014 — Jul 2016",
@@ -65,8 +73,10 @@ const EXPERIENCE = [
     title_en: "IT Support",
     title_es: "Soporte IT",
     company: "Atos · Siemens LATAM",
-    desc_en: "Remote troubleshooting for Siemens employees. Tools: BMC Remedy, ServiceNow, Net pro2000, Active Directory.",
-    desc_es: "Soporte remoto para empleados de Siemens. Herramientas: BMC Remedy, ServiceNow, Net pro2000, Active Directory.",
+    desc_en:
+      "Remote troubleshooting for Siemens employees. Tools: BMC Remedy, ServiceNow, Net pro2000, Active Directory.",
+    desc_es:
+      "Soporte remoto para empleados de Siemens. Herramientas: BMC Remedy, ServiceNow, Net pro2000, Active Directory.",
   },
   {
     date_en: "Jul 2010 — Dec 2013",
@@ -74,43 +84,63 @@ const EXPERIENCE = [
     title_en: "IT Technician",
     title_es: "Técnico IT",
     company: "Microsoft",
-    desc_en: "HST IT Support Level 1 & 2. On-site support, hardware and software incidents, supplier contact (Lenovo, Xerox, HP), hardware stock management.",
-    desc_es: "Soporte IT Nivel 1 y 2. Soporte en sitio, incidentes de hardware y software, contacto con proveedores (Lenovo, Xerox, HP), gestión de stock.",
+    desc_en:
+      "HST IT Support Level 1 & 2. On-site support, hardware and software incidents, supplier contact (Lenovo, Xerox, HP), hardware stock management.",
+    desc_es:
+      "Soporte IT Nivel 1 y 2. Soporte en sitio, incidentes de hardware y software, contacto con proveedores (Lenovo, Xerox, HP), gestión de stock.",
   },
 ];
 ---
 
 <div class="exp-list">
-  {EXPERIENCE.map((item, i) => (
-    <div class={`exp-item reveal reveal-delay-${Math.min(i % 3 + 1, 4)}`}>
-      <div class="exp-date">
-        <span class="date-en">{item.date_en}</span>
-        <span class="date-es" style="display:none">{item.date_es}</span>
-      </div>
-      <div class="exp-body">
-        <div class="exp-header">
-          <span class="exp-title">
-            <span class="title-en">{item.title_en}</span>
-            <span class="title-es" style="display:none">{item.title_es}</span>
+  {
+    EXPERIENCE.map((item, i) => (
+      <div class={`exp-item reveal reveal-delay-${Math.min((i % 3) + 1, 4)}`}>
+        <div class="exp-date">
+          <span class="date-en">{item.date_en}</span>
+          <span class="date-es" style="display:none">
+            {item.date_es}
           </span>
-          <span class="exp-company">{item.company}</span>
         </div>
-        <p class="exp-desc">
-          <span class="desc-en">{item.desc_en}</span>
-          <span class="desc-es" style="display:none">{item.desc_es}</span>
-        </p>
-        {item.link && (
-          <a href={item.link} target="_blank" rel="noopener noreferrer" class="exp-link" data-i18n="exp_visit">
-            Visit site →
-          </a>
-        )}
+        <div class="exp-body">
+          <div class="exp-header">
+            <span class="exp-title">
+              <span class="title-en">{item.title_en}</span>
+              <span class="title-es" style="display:none">
+                {item.title_es}
+              </span>
+            </span>
+            <span class="exp-company">{item.company}</span>
+          </div>
+          <p class="exp-desc">
+            <span class="desc-en">{item.desc_en}</span>
+            <span class="desc-es" style="display:none">
+              {item.desc_es}
+            </span>
+          </p>
+          {item.link && (
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="exp-link"
+              data-i18n="exp_visit"
+            >
+              Visit site →
+            </a>
+          )}
+        </div>
       </div>
-    </div>
-  ))}
+    ))
+  }
 </div>
 
 <style>
-  .exp-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
   .exp-item {
     display: grid;
     grid-template-columns: 180px 1fr;
@@ -118,7 +148,9 @@ const EXPERIENCE = [
     padding: 2rem 0;
     border-bottom: 1px solid var(--border);
   }
-  .exp-item:first-child { border-top: 1px solid var(--border); }
+  .exp-item:first-child {
+    border-top: 1px solid var(--border);
+  }
   .exp-date {
     font-size: 0.7rem;
     letter-spacing: 0.04em;
@@ -127,14 +159,48 @@ const EXPERIENCE = [
     padding-top: 0.2rem;
     white-space: nowrap;
   }
-  .exp-body { display: flex; flex-direction: column; gap: 0.5rem; }
-  .exp-header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1rem; }
-  .exp-title { font-weight: 500; font-size: 0.95rem; color: var(--ink); letter-spacing: -0.01em; }
-  .exp-company { font-size: 0.8rem; color: var(--ink-soft); }
-  .exp-desc { font-size: 0.82rem; line-height: 1.65; color: var(--ink-soft); max-width: 56ch; }
-  .exp-link { font-size: 0.72rem; letter-spacing: 0.03em; color: var(--ink-ghost); transition: color 0.2s; width: fit-content; }
-  .exp-link:hover { color: var(--ink); }
+  .exp-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .exp-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+  }
+  .exp-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .exp-company {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+  .exp-desc {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 56ch;
+  }
+  .exp-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-ghost);
+    transition: color 0.2s;
+    width: fit-content;
+  }
+  .exp-link:hover {
+    color: var(--ink);
+  }
   @media (max-width: 680px) {
-    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.5rem 0; }
+    .exp-item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      padding: 1.5rem 0;
+    }
   }
 </style>
